@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Antonio Pires - Full-Stack Web Developer Portfolio. 4+ years building scalable web apps with Laravel (PHP), MySQL, Docker. Open to remote opportunities.">
+    <meta name="keywords" content="Laravel Developer, PHP, Full-Stack, MySQL, Docker, Kubernetes, Web Development">
+    <title>Antonio Pires | Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8B5CF6;
+            --accent: #A78BFA;
+            --cta: #EC4899;
+            --bg: #0F0F0F;
+            --card-bg: #1E3A8A;
+            --text: #F3F4F6;
+            --text-muted: #9CA3AF;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0F0F0F 0%, #1E1B4B 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+            max-width: 100% !important;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            opacity: 0.15;
+            top: -250px;
+            right: -250px;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.2); opacity: 0.25; }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            max-width: 900px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .hero-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid var(--primary);
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
+            margin: 0 auto 2rem;
+            object-fit: cover;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--cta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .key-strengths {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .strength-badge {
+            background: rgba(139, 92, 246, 0.1);
+            border: 2px solid var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .strength-badge:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--cta), var(--primary));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.5);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--cta));
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        .about-content strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .location {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(139, 92, 246, 0.1);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* Experience Section */
+        .experience-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .experience-card {
+            background: rgba(30, 58, 138, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.2);
+        }
+
+        .experience-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .company-logo {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .experience-info h3 {
+            font-size: 1.5rem;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .experience-date {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .achievement-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .achievement-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-muted);
+        }
+
+        .achievement-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--cta);
+            font-weight: 700;
+        }
+
+        .achievement-list strong {
+            color: var(--text);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(30, 58, 138, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.3);
+        }
+
+        .project-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--card-bg));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .project-thumbnail.checkout {
+            background: url("./images/checkout.png");
+        }
+
+        .project-thumbnail.real-estate {
+            background: url("./images/real-estate.png");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-thumbnail.raffle {
+            background: url("./images/raffle.png");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-thumbnail.quota-api {
+            background: url("./images/quota-api.png");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-thumbnail.contracts {
+            background: url("./images/contracts.png");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .project-description {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-badge {
+            background: rgba(139, 92, 246, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: var(--cta);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--accent);
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(30, 58, 138, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .skill-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-badge {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            background: var(--primary);
+            transform: scale(1.1);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: rgba(30, 58, 138, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(15, 15, 15, 0.5);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 15, 15, 0.8);
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(139, 92, 246, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .hero-photo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .key-strengths {
+                gap: 0.75rem;
+            }
+
+            .strength-badge {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <img src="./images/profile.jpeg" alt="Antonio Pires" class="hero-photo">
+            
+            <h1>Antonio Pires</h1>
+            
+            <p class="tagline">Laravel Specialist | Docker & MySQL | Building Scalable Web Apps</p>
+            
+            <div class="key-strengths">
+                <span class="strength-badge">PHP/Laravel</span>
+                <span class="strength-badge">MySQL</span>
+                <span class="strength-badge">Docker</span>
+                <span class="strength-badge">AI Agents</span>
+                <span class="strength-badge">REST APIs</span>
+            </div>
+            
+            <a href="#projects" class="cta-button">View Projects</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="reveal">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <p>
+                <strong>From Systems Analyst to Entrepeneur:</strong> With over 4 years of full-stack development experience, 
+                I've evolved from optimizing databases for 20,000+ concurrent users to architecting complete SaaS platforms from scratch. 
+                My journey includes leading a property management from MVP to production-ready system, translating complete figma interfaces to pure HTML + CSS and many more projects that required agility in this fast paced world.
+            </p>
+            <p>
+                I specialize in <strong>Laravel ecosystems</strong>, building robust APIs integrated with platforms like Meta Conversions API, 
+                and deploying scalable infrastructure on DigitalOcean and Kubernetes. Notable wins include developing and deploying a 
+                <strong>property management MVP within 2 days</strong>, implementing raffle numbers systems processing 1,000+ transactions per minute, and reducing query times by 60% 
+                through strategic indexing.
+            </p>
+            <p>
+                Currently expanding my DevOps expertise with Kubernetes while maintaining my passion for clean, maintainable code that solves real business problems.
+            </p>
+            <div class="location">
+                📍 Based in Santa Catarina, Brazil – Open to remote EU/US roles
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="reveal">
+        <h2 class="section-title">Experience</h2>
+        <div class="experience-grid">
+          <div class="experience-card">
+            <div class="experience-header">
+              <div class="company-logo">SE</div>
+              <div class="experience-info">
+                <h3>Fullstack Web Developer (Contractor)</h3>
+                <p class="experience-date">Freelance Projects | Oct 2024 - Present</p>
+              </div>
+            </div>
+            <ul class="achievement-list">
+              <li>Managed end-to-end web projects from planning to deployment, overseeing architecture and performance optimization</li>
+              <li>Expanded responsibilities from hands-on coding to team coordination, delivering scalable solutions aligned with business goals</li>
+              <li>Leveraged Laravel, Docker, and AWS expertise across multiple client projects with focus on quality and efficiency</li>
+            </ul>
+          </div>
+          <div class="experience-card">
+              <div class="experience-header">
+                <div class="company-logo">DB</div>
+                <div class="experience-info">
+                  <h3>Fullstack Web Developer</h3>
+                  <p class="experience-date">Doutbox | Oct 2023 - Oct 2024 (1 year)</p>
+                </div>
+            </div>
+            <ul class="achievement-list">
+              <li>Developed RESTful APIs and web solutions using
+              <strong>Laravel, Vue.js, and MySQL</strong> following MVC patterns</li>
+              <li>Implemented Docker containerization, PHPUnit unit tests, and tools like Telescope, Horizon, and Spatie Permissions</li>
+              <li>AWS Certified Cloud Practitioner – optimized cloud deployments for production environments</li>
+            </ul>
+          </div>
+          <div class="experience-card">
+              <div class="experience-header">
+                <div class="company-logo">OX</div>
+                <div class="experience-info">
+                  <h3>Fullstack Web Developer</h3>
+                  <p class="experience-date">Onix Tecnologia | 2022 - 2023 (11 months)</p>
+                </div>
+              </div>
+              <ul class="achievement-list">
+                <li>Designed and maintained internal company systems using
+                <strong>Bootstrap, jQuery, SASS</strong> (frontend) and pure PHP/MySQL (backend)</li>
+                <li>Delivered agile solutions optimized for startup development cycles with focus on scalability</li>
+                <li>Streamlined development processes, transitioning from pure PHP to framework-based architecture</li>
+              </ul>
+          </div>
+          <div class="experience-card">
+            <div class="experience-header">
+              <div class="company-logo">BA</div>
+              <div class="experience-info">
+                <h3>Content Developer (Volunteer)</h3>
+                <p class="experience-date">Bisonaide Germany | 2023 (3 months)</p>
+              </div>
+            </div>
+            <ul class="achievement-list">
+              <li>Developed front-end course curriculum for high school students in Romania, inspiring next-gen developers</li>
+              <li>Collaborated with international team in brainstorming sessions to create engaging educational content</li>
+              <li>Demonstrated strong communication skills across cultures, applicable to remote dev collaboration</li>
+            </ul>
+          </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="reveal">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-thumbnail real-estate"></div>
+                <div class="project-content">
+                    <h3>Property Management (SaaS)</h3>
+                    <p class="project-description">
+                        Complete property rental platform with management, fltering and automated notifications. Payment and geolocalization yet to be implemented. 
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Laravel 10</span>
+                        <span class="tech-badge">Blade</span>
+                        <span class="tech-badge">MySQL</span>
+                        <span class="tech-badge">Vite</span>
+                        <span class="tech-badge">AlpineJS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-thumbnail checkout"></div>
+                <div class="project-content">
+                    <h3>Meta Conversions API Integration (Contract)</h3>
+                    <p class="project-description">
+                        Server-side tracking solution for checkout platforms improving ad attribution accuracy by 40%. 
+                        Processes 1,000+ events daily.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">PHP + Laravel</span>
+                        <span class="tech-badge">Meta API</span>
+                        <span class="tech-badge">Redis</span>
+                        <span class="tech-badge">Queue</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-thumbnail raffle"></div>
+                <div class="project-content">
+                    <h3>Performance Optimizer</h3>
+                    <p class="project-description">
+                        Revamped the application's infrastructure with Docker and Kubernetes to dynamically scale for peak traffic surges while optimizing costs during low-usage periods, ensuring 99.9% uptime under variable loads.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Laravel</span>
+                        <span class="tech-badge">Kubernetes</span>
+                        <span class="tech-badge">Docker</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://viradadevida.com.br/" target="_blank" class="project-link">Application →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-thumbnail quota-api">📦</div>
+                <div class="project-content">
+                    <h3>Real Estate Quota API (Contract)</h3>
+                    <p class="project-description">
+                        Rapidly deployed MVP of a Real Estate Quota API in under 3 days using Laravel + MySQL, featuring RESTful endpoints for property quotas, tenant tracking, and automated billing calculations—optimized for 1,000+ daily transactions with Docker containerization.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Docker</span>
+                        <span class="tech-badge">Laravel</span>
+                        <span class="tech-badge">API</span>
+                        <span class="tech-badge">MySQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-thumbnail contracts">⚡</div>
+                <div class="project-content">
+                    <h3>Freelancer Contract Generator (SaaS | AI)</h3>
+                    <p class="project-description">
+                        AI-powered Freelancer Contract Generator built with Laravel and AI, automating customizable legal templates for independent contractors—generating compliant PDFs in seconds with clauses for scope, payment terms, and NDAs, streamlining client onboarding for agencies and solopreneurs.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Laravel</span>
+                        <span class="tech-badge">Claude</span>
+                        <span class="tech-badge">OpenAI</span>
+                        <span class="tech-badge">Gemini</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="reveal">
+        <h2 class="section-title">Skills & Technologies</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Backend</h3>
+                <div class="skill-badges">
+                    <span class="skill-badge">PHP</span>
+                    <span class="skill-badge">Laravel</span>
+                    <span class="skill-badge">MySQL</span>
+                    <span class="skill-badge">PostgreSQL</span>
+                    <span class="skill-badge">Redis</span>
+                    <span class="skill-badge">REST APIs</span>
+                    <span class="skill-badge">Python</span>
+                    <span class="skill-badge">ExpoGo</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Frontend</h3>
+                <div class="skill-badges">
+                    <span class="skill-badge">Blade</span>
+                    <span class="skill-badge">JavaScript</span>
+                    <span class="skill-badge">Vue.js</span>
+                    <span class="skill-badge">Tailwind CSS</span>
+                    <span class="skill-badge">Alpine.js</span>
+                    <span class="skill-badge">Livewire</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>DevOps & Tools</h3>
+                <div class="skill-badges">
+                    <span class="skill-badge">Docker</span>
+                    <span class="skill-badge">Kubernetes</span>
+                    <span class="skill-badge">Git</span>
+                    <span class="skill-badge">CI/CD</span>
+                    <span class="skill-badge">DigitalOcean</span>
+                    <span class="skill-badge">Nginx</span>
+                    <span class="skill-badge">Linux</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Integrations</h3>
+                <div class="skill-badges">
+                    <span class="skill-badge">Meta Conversions API</span>
+                    <span class="skill-badge">Digital Ocean</span>
+                    <span class="skill-badge">AWS S3</span>
+                    <span class="skill-badge">OAuth</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="reveal">
+        <h2 class="section-title">Let's Talk Projects</h2>
+        <div class="contact-container">
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://linkedin.com/in/antoniovpires" class="social-link" target="_blank" title="LinkedIn">
+                <i class="devicon-linkedin-plain"></i>
+            </a>
+            <a href="https://github.com/antoniovpires" class="social-link" target="_blank" title="GitHub">
+                <i class="devicon-github-original"></i>
+            </a>
+        </div>
+        <p class="footer-text">
+            Made with ❤️ in Brazil | © 2025 Antonio Pires<br>
+            Available for freelance & remote opportunities
+        </p>
+    </footer>
+
+    <script>
+        // Scroll reveal animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal(); // Check on load
+
+        // Contact form handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            const subject = `Portfolio Contact: ${name}`;
+            const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+            
+            window.location.href = `mailto:antoniovpiresnt@gmail.com?subject=${subject}&body=${body}`;
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
